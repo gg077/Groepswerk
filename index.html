@@ -51,6 +51,38 @@
     </div>
 </div>
 
+<!-- Modal voor landdetails -->
+<div class="modal fade" id="countryModal" tabindex="-1" aria-labelledby="countryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="modaltitel">Land Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <h3 id="landnaam" class="text-center text-primary fw-bold"></h3>
+                <div class="text-center mb-3">
+                    <img id="landvlag" class="img-fluid rounded shadow-sm" style="max-width: 200px;" alt="Land Vlag">
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Hoofdstad:</strong> <span id="hoofdstad"></span></p>
+                        <p><strong>Regio:</strong> <span id="regio"></span></p>
+                        <p><strong>Populatie:</strong> <span id="populatie"></span></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Talen:</strong> <span id="talen"></span></p>
+                        <p><strong>Valuta:</strong> <span id="valuta"></span></p>
+                    </div>
+                </div>
+                <div id="map" class="mt-4" style="height: 300px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="app.js"></script>
 </body>
