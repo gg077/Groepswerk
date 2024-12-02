@@ -18,7 +18,7 @@ axios.get(url)
 function renderLandenCards(landenList) {
     // console.log(landenList)
     landenList.forEach(land => {
-        console.log(land)
+        // console.log(land)
         const landName = land.name.official;
         const landFlag = land.flags.svg;
         const landRegion = land.region;
@@ -29,7 +29,7 @@ function renderLandenCards(landenList) {
         const landLanguages = land.languages
          ? Object.values(land.languages).join(", ")
          : "Niet beschikbaar";
-        console.log(landLanguages)
+        // console.log(landLanguages)
 
         // const landCurrency = land.currencies;
         const landCurrency = land.currencies
@@ -37,7 +37,7 @@ function renderLandenCards(landenList) {
              .map(curr => curr.name)
              .join(", ")
          : "Niet beschikbaar";
-        console.log(landCurrency)
+        // console.log(landCurrency)
 
         // create card
         const card =
@@ -49,7 +49,7 @@ function renderLandenCards(landenList) {
                         <strong>Regio:</strong> ${landRegion}<br>
                         <strong>Populatie:</strong> ${landPopulation}
                     </p>
-                    <button class="btn btn-primary w-100" onclick="openModal('${landName}', '${landFlag}', '${landCapital}', ${landPopulation}, ${landLanguages}, ${landCurrency})">
+                    <button class="btn btn-primary w-100" onclick="openModal('${landName}', '${landFlag}', '${landCapital}', '${landPopulation}', '${landLanguages}', '${landCurrency}')">
                         Details bekijken 
                     </button>
                 </div>
