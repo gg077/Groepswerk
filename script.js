@@ -86,9 +86,8 @@ function openModal(name, flag, capital, region, population, languages, currency)
             </div>
         </div>`;
 
-    document.getElementsByClassName("modal-content").innerHTML = modalContent;
-//     const modalElement = document.querySelector(".modal-content");
-//     modalElement.innerHTML = modalContent;
+    const modalElement = document.querySelector(".modal-content");
+    modalElement.innerHTML = modalContent;
 
     // Toon de modal
     const modal = new bootstrap.Modal(document.getElementById("countryModal"));
