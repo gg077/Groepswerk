@@ -1,13 +1,48 @@
-#landenlijst {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-#map {
-    border: 2px solid #007bff;
-    border-radius: 8px;
-    overflow: hidden;
-}
+/* Algemene container styling */
 #container {
-    background-color: lightgreen;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Zoekveld, knop en dropdown styling */
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+#zoekveld, #zoekknop, #regionFilter {
+    width: 100%;
+    max-width: 350px; /* Limiteer de breedte */
+    height: 45px;
+    border-radius: 5px;
+}
+#zoekveld {
+    border: 1px solid #ced4da;
+    padding: 10px;
+}
+#zoekknop {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+#zoekknop:hover {
+    background-color: #0056b3;
+}
+#regionFilter {
+    border: 1px solid #ced4da;
+    padding: 5px;
+}
+
+/* Responsiviteit */
+@media (max-width: 768px) {
+    #container {
+        padding: 15px;
+    }
+    #zoekveld, #zoekknop, #regionFilter {
+        max-width: 100%;
+    }
 }
