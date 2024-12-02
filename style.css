@@ -1,0 +1,13 @@
+#landenlijst {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+#map {
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+#container {
+    background-color: lightgreen;
+}
