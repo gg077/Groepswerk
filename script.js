@@ -1,7 +1,8 @@
 const container = document.getElementById("landenlijst");
-const url = `https://restcountries.com/v3.1/all`;
+const url = `https://restcountries.com/v3.1`;
 
-axios.get(url)
+// verzamel all data
+axios.get(url+'/all')
     .then(response => {
         const landenList = response.data;
         renderLandenCards(landenList)
@@ -17,7 +18,38 @@ axios.get(url)
 
 // filters
 
+
+// zoekveld
+function zoekLand() {
+    // Haal de invoer op
+    const zoekterm = document.getElementById("zoekveld").value.trim();
+    axios.get(url+`/all`)
+        .then(response => {
+            console.log(response)
+            const landenList = response.data;
+            const gefilterdeLanden = landenList.filter(land =>
+                land.name.common.toLowerCase().includes(zoekterm)
+            );
+
+            if (gefilterdeLanden.length === 0) {
+                resultatenContainer.innerHTML = "<p class='text-danger'>Geen resultaten gevonden.</p>";
+                return;
+            }
+            renderLandenCards(gefilterdeLanden)
+        })
+        .catch(error => {
+            console.log('error')
+            console.error("Fout bij het ophalen van gegevens:", error);
+            document.getElementById("pokemon-list").innerHTML =
+                `<div class="alert alert-danger" role="alert">
+                 Er is een fout opgetreden bij het ophalen van de gegevens.
+             </div>`;
+        });
+}
+
 function renderLandenCards(landenList) {
+    // Wis eerdere resultaten
+    container.innerHTML ="";
     // console.log(landenList)
     landenList.forEach(land => {
         console.log(land)
