@@ -15,41 +15,42 @@ axios.get(url)
              </div>`;
     });
 
+// filters
+
 function renderLandenCards(landenList) {
     // console.log(landenList)
     landenList.forEach(land => {
-        // console.log(land)
+        console.log(land)
         const landName = land.name.official;
         const landFlag = land.flags.svg;
         const landRegion = land.region;
         const landPopulation = land.population.toLocaleString();
         const landCapital = land.capital;
 
-        // const landLanguages = land.languages;
         const landLanguages = land.languages
          ? Object.values(land.languages).join(", ")
          : "Niet beschikbaar";
-        // console.log(landLanguages)
 
-        // const landCurrency = land.currencies;
         const landCurrency = land.currencies
          ? Object.values(land.currencies)
              .map(curr => curr.name)
              .join(", ")
          : "Niet beschikbaar";
-        // console.log(landCurrency)
+
+        const landLatitude = land.latlng[0]
+        const landLongitude = land.latlng[1]
 
         // create card
         const card =
             `<div class="card col-md-4 shadow-sm">
                 <img src="${landFlag}" class="card-img-top" alt="Vlag van ${landName}">
-                <div class="card-body flex-grow">
+                <div class="card-body flex-grow d-flex flex-column">
                     <h5 class="card-title">${landName}</h5>
                     <p class="card-text">
                         <strong>Regio:</strong> ${landRegion}<br>
                         <strong>Populatie:</strong> ${landPopulation}
                     </p>
-                    <button class="btn btn-primary w-100" onclick="openModal('${landName}', '${landFlag}', '${landCapital}', '${landPopulation}', '${landLanguages}', '${landCurrency}')">
+                    <button class="btn btn-primary w-100 mt-auto" onclick="openModal('${landName}', '${landFlag}', '${landCapital}', '${landRegion}', '${landPopulation}', '${landLanguages}', '${landCurrency}', '${landLatitude}', '${landLongitude}')">
                         Details bekijken 
                     </button>
                 </div>
@@ -59,7 +60,7 @@ function renderLandenCards(landenList) {
 
 }
 
-function openModal(name, flag, capital, region, population, languages, currency) {
+function openModal(name, flag, capital, region, population, languages, currency, latitude, longitude) {
     const modalContent =
         `<div class="modal-header">
             <h5 class="modal-title" id="modaltitel">Land Details</h5>
@@ -82,8 +83,7 @@ function openModal(name, flag, capital, region, population, languages, currency)
                     <p><strong>Valuta:</strong>${currency}</p>
                 </div>
             </div>
-            <div id="map" class="mt-4" style="height: 300px;">
-            </div>
+            <div id="map" class="mt-4" style="height: 300px;"></div>
         </div>`;
 
     const modalElement = document.querySelector(".modal-content");
@@ -92,4 +92,17 @@ function openModal(name, flag, capital, region, population, languages, currency)
     // Toon de modal
     const modal = new bootstrap.Modal(document.getElementById("countryModal"));
     modal.show();
+
+    /// Initialiseer de kaart na rendering
+    setTimeout(() => {
+        const map = L.map('map').setView([latitude, longitude], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Voeg een marker toe
+        L.marker([latitude, longitude]).addTo(map)
+            .bindPopup(`<strong>${name}</strong><br>Hoofdstad: ${capital}`)
+            .openPopup();
+    }, 300); // Wacht totdat de modal volledig is gerenderd
 }
