@@ -25,7 +25,7 @@ function ZoekOnInput() {
 }
 function zoekLand() {
     // Haal de invoer op
-    const zoekterm = document.getElementById("zoekveld").value.trim();
+    const zoekterm = document.getElementById("zoekveld").value.trim().toLowerCase();
     // Geselecteerde regio
     const regio = document.getElementById("regionFilter").value;
     axios.get(url+`/all`)
@@ -40,11 +40,14 @@ function zoekLand() {
                 landenList = landenList.filter(land => {
                     const zoekInCommon = land.name.common.toLowerCase().includes(zoekterm);
                     const zoekInOfficial = land.name.official.toLowerCase().includes(zoekterm);
+                    // zoeken in nedelandse taal
+                    const zoekInTalen = land.translations.nld.common?.toLowerCase().includes(zoekterm)
+                        || land.translations.nld.official?.toLowerCase().includes(zoekterm);
                     // zoeken in onder andere talen
-                    const zoekInTalen = Object.values(land.translations || {}).some(vertaling =>
-                        vertaling.common?.toLowerCase().includes(zoekterm) ||
-                        vertaling.official?.toLowerCase().includes(zoekterm)
-                    );
+                    // const zoekInTalen = Object.values(land.translations || {}).some(vertaling =>
+                    //     vertaling.common?.toLowerCase().includes(zoekterm) ||
+                    //     vertaling.official?.toLowerCase().includes(zoekterm)
+                    // );
                     return zoekInCommon || zoekInOfficial || zoekInTalen;
                 });
             }
