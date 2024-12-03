@@ -32,17 +32,24 @@ function zoekLand() {
         .then(response => {
             console.log(response)
             let landenList = response.data;
+            // Filter landen op regio als een regio is geselecteerd
             if (regio) {
                 landenList = landenList.filter(land => land.region === regio);
             }
-
             // Filter landen verder op zoekterm
             if (zoekterm) {
-                landenList = landenList.filter(land =>
-                    land.name.common.toLowerCase().includes(zoekterm)
-                );
-            }
+                landenList = landenList.filter(land => {
+                    const zoekInCommon = land.name.common.toLowerCase().includes(zoekterm);
+                    const zoekInOfficial = land.name.official.toLowerCase().includes(zoekterm);
+                    const zoekInTalen = Object.values(land.translations || {}).some(vertaling =>
+                        vertaling.common?.toLowerCase().includes(zoekterm) ||
+                        vertaling.official?.toLowerCase().includes(zoekterm)
+                    );
 
+                    return zoekInCommon || zoekInOfficial || zoekInTalen;
+                });
+            }
+            // Toon resultaten
             if (landenList.length === 0) {
                 container.innerHTML = "<p class='text-danger'>Geen resultaten gevonden.</p>";
                 return;
@@ -81,8 +88,8 @@ function renderLandenCards(landenList) {
              .join(", ")
          : "Niet beschikbaar";
 
-        const landLatitude = land.latlng[0]
-        const landLongitude = land.latlng[1]
+        const landLatitude = land.capitalInfo.latlng[0]
+        const landLongitude = land.capitalInfo.latlng[1]
 
         // create card
         const card =
