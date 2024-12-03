@@ -30,7 +30,6 @@ function zoekLand() {
     const regio = document.getElementById("regionFilter").value;
     axios.get(url+`/all`)
         .then(response => {
-            console.log(response)
             let landenList = response.data;
             // Filter landen op regio als een regio is geselecteerd
             if (regio) {
@@ -41,17 +40,17 @@ function zoekLand() {
                 landenList = landenList.filter(land => {
                     const zoekInCommon = land.name.common.toLowerCase().includes(zoekterm);
                     const zoekInOfficial = land.name.official.toLowerCase().includes(zoekterm);
+                    // zoeken in onder andere talen
                     const zoekInTalen = Object.values(land.translations || {}).some(vertaling =>
                         vertaling.common?.toLowerCase().includes(zoekterm) ||
                         vertaling.official?.toLowerCase().includes(zoekterm)
                     );
-
                     return zoekInCommon || zoekInOfficial || zoekInTalen;
                 });
             }
             // Toon resultaten
             if (landenList.length === 0) {
-                container.innerHTML = "<p class='text-danger'>Geen resultaten gevonden.</p>";
+                container.innerHTML = "<p class='text-danger text-center'>Geen resultaten gevonden.</p>";
                 return;
             }
             renderLandenCards(landenList)
@@ -114,7 +113,7 @@ function renderLandenCards(landenList) {
 function openModal(name, flag, capital, region, population, languages, currency, latitude, longitude) {
     const modalContent =
         `<div class="modal-header">
-            <h5 class="modal-title" id="modaltitel">Land Details</h5>
+            <h5 class="modal-title">Land Details</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <!-- Modal Body -->
