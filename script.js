@@ -17,25 +17,37 @@ axios.get(url+'/all')
     });
 
 // filters
-
-
 // zoekveld
+let holdTimer;
+function ZoekOnInput() {
+    clearTimeout(holdTimer);
+    holdTimer = setTimeout(() => zoekLand(), 300); // 300ms vertraging
+}
 function zoekLand() {
     // Haal de invoer op
     const zoekterm = document.getElementById("zoekveld").value.trim();
+    // Geselecteerde regio
+    const regio = document.getElementById("regionFilter").value;
     axios.get(url+`/all`)
         .then(response => {
             console.log(response)
-            const landenList = response.data;
-            const gefilterdeLanden = landenList.filter(land =>
-                land.name.common.toLowerCase().includes(zoekterm)
-            );
+            let landenList = response.data;
+            if (regio) {
+                landenList = landenList.filter(land => land.region === regio);
+            }
 
-            if (gefilterdeLanden.length === 0) {
-                resultatenContainer.innerHTML = "<p class='text-danger'>Geen resultaten gevonden.</p>";
+            // Filter landen verder op zoekterm
+            if (zoekterm) {
+                landenList = landenList.filter(land =>
+                    land.name.common.toLowerCase().includes(zoekterm)
+                );
+            }
+
+            if (landenList.length === 0) {
+                container.innerHTML = "<p class='text-danger'>Geen resultaten gevonden.</p>";
                 return;
             }
-            renderLandenCards(gefilterdeLanden)
+            renderLandenCards(landenList)
         })
         .catch(error => {
             console.log('error')

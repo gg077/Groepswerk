@@ -18,13 +18,18 @@
     <div class="search-container">
         <!-- Zoekveld en knop -->
         <div class="d-flex justify-content-center align-items-center gap-2">
-            <input id="zoekveld" type="text" class="form-control" placeholder="Zoek een land op naam">
-            <button id="zoekknop" class="btn btn-primary px-4" onclick="zoekLand()">Zoek</button>
+            <input id="zoekveld" type="text" class="form-control" placeholder="Zoek een land op naam"
+                   oninput="ZoekOnInput()">
+            <button id="zoekknop" class="btn btn-primary px-4"
+                    onclick="zoekLand()">
+                Zoek
+            </button>
         </div>
         <!-- Regiofilter -->
         <div class="d-flex justify-content-center pt-3">
-            <select id="regionFilter" class="form-select">
-                <option value="" disabled selected>Filter op regio</option>
+            <select id="regionFilter" class="form-select"
+                    onchange="zoekLand()">
+                <option value="" selected>Filter op regio</option>
                 <option value="Africa">Africa</option>
                 <option value="Americas">Americas</option>
                 <option value="Asia">Asia</option>
