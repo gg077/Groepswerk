@@ -77,7 +77,7 @@ function renderLandenCards(landenList) {
         // create card
         const card =
             `<div class="card col-md-4 shadow-sm">
-                <img src="${landFlag}" class="card-img-top" alt="Vlag van ${landName}">
+                <img src="${landFlag}" id="vlagimg" class="card-img-top" alt="Vlag van ${landName}">
                 <div class="card-body flex-grow d-flex flex-column">
                     <h5 class="card-title">${landName}</h5>
                     <p class="card-text">
@@ -107,13 +107,13 @@ function openModal(name, flag, capital, region, population, languages, currency,
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <p><strong>Hoofdstad:</strong>${capital}</p>
-                    <p><strong>Regio:</strong>${region}</p>
-                    <p><strong>Populatie:</strong>${population}</p>
+                    <p><strong>Hoofdstad:</strong> ${capital}</p>
+                    <p><strong>Regio:</strong> ${region}</p>
+                    <p><strong>Populatie:</strong> ${population}</p>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Talen:</strong>${languages}</p>
-                    <p><strong>Valuta:</strong>${currency}</p>
+                    <p><strong>Talen:</strong> ${languages}</p>
+                    <p><strong>Valuta:</strong> ${currency}</p>
                 </div>
             </div>
             <div id="map" class="mt-4" style="height: 300px;"></div>
