@@ -1,21 +1,6 @@
 const container = document.getElementById("landenlijst");
 const url = `https://restcountries.com/v3.1`;
 
-// verzamel all data
-axios.get(url+'/all')
-    .then(response => {
-        const landenList = response.data;
-        renderLandenCards(landenList)
-    })
-    .catch(error => {
-        console.log('error')
-        console.error("Fout bij het ophalen van gegevens:", error);
-        document.getElementById("pokemon-list").innerHTML =
-            `<div class="alert alert-danger" role="alert">
-                 Er is een fout opgetreden bij het ophalen van de gegevens.
-             </div>`;
-    });
-
 // filters
 // zoekveld
 let holdTimer;
@@ -43,11 +28,7 @@ function zoekLand() {
                     // zoeken in nedelandse taal
                     const zoekInTalen = land.translations.nld.common?.toLowerCase().includes(zoekterm)
                         || land.translations.nld.official?.toLowerCase().includes(zoekterm);
-                    // zoeken in onder andere talen
-                    // const zoekInTalen = Object.values(land.translations || {}).some(vertaling =>
-                    //     vertaling.common?.toLowerCase().includes(zoekterm) ||
-                    //     vertaling.official?.toLowerCase().includes(zoekterm)
-                    // );
+
                     return zoekInCommon || zoekInOfficial || zoekInTalen;
                 });
             }
@@ -110,7 +91,6 @@ function renderLandenCards(landenList) {
             </div>`;
         container.insertAdjacentHTML("beforeend", card);
     })
-
 }
 
 function openModal(name, flag, capital, region, population, languages, currency, latitude, longitude) {
@@ -123,7 +103,7 @@ function openModal(name, flag, capital, region, population, languages, currency,
         <div class="modal-body">
             <h3 class="text-center text-primary fw-bold">${name}</h3>
             <div class="text-center mb-3">
-                <img src="${flag}" class="img-fluid rounded shadow-sm" style="max-width: 200px;" alt="Vlag van ${name}">
+                <img src="${flag}" class="img-fluid rounded shadow-sm" style="max-width: 300px;" alt="Vlag van ${name}">
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -159,3 +139,6 @@ function openModal(name, flag, capital, region, population, languages, currency,
             .openPopup();
     }, 300); // Wacht totdat de modal volledig is gerenderd
 }
+
+// verzamel all dat
+zoekLand();
