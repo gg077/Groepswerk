@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="311dac70-26f7-45d7-894a-65211ab89745" name="div" comment="">
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
-    </list>
-    <list id="a17bcccc-4324-4475-a5b0-f2783db2a67a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
-    </list>
+    <list default="true" id="311dac70-26f7-45d7-894a-65211ab89745" name="div" comment="" />
+    <list id="a17bcccc-4324-4475-a5b0-f2783db2a67a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,22 +21,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/script.js">
-      <ranges>
-        <range start1="79" end1="80" start2="79" end2="80" changelist="a17bcccc-4324-4475-a5b0-f2783db2a67a" />
-        <range start1="109" end1="112" start2="109" end2="112" changelist="311dac70-26f7-45d7-894a-65211ab89745" />
-        <range start1="114" end1="116" start2="114" end2="116" changelist="311dac70-26f7-45d7-894a-65211ab89745" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/index.html">
-      <ranges>
-        <range start1="16" end1="38" start2="16" end2="32" changelist="a17bcccc-4324-4475-a5b0-f2783db2a67a" />
-        <range start1="39" end1="39" start2="33" end2="34" changelist="a17bcccc-4324-4475-a5b0-f2783db2a67a" />
-        <range start1="51" end1="52" start2="46" end2="47" changelist="311dac70-26f7-45d7-894a-65211ab89745" />
-      </ranges>
-    </file>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -96,7 +71,7 @@
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
       <updated>1733328591459</updated>
-      <workItem from="1733328592440" duration="765000" />
+      <workItem from="1733328592440" duration="1671000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
