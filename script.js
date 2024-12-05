@@ -1,6 +1,5 @@
 const container = document.getElementById("landenlijst");
 const url = `https://restcountries.com/v3.1`;
-
 // filters
 // zoekveld
 let holdTimer;
@@ -28,7 +27,6 @@ function zoekLand() {
                     // zoeken in nedelandse taal
                     const zoekInTalen = land.translations.nld.common?.toLowerCase().includes(zoekterm)
                         || land.translations.nld.official?.toLowerCase().includes(zoekterm);
-
                     return zoekInCommon || zoekInOfficial || zoekInTalen;
                 });
             }
@@ -48,7 +46,6 @@ function zoekLand() {
              </div>`;
         });
 }
-
 function renderLandenCards(landenList) {
     // Wis eerdere resultaten
     container.innerHTML ="";
@@ -60,24 +57,20 @@ function renderLandenCards(landenList) {
         const landRegion = land.region;
         const landPopulation = land.population.toLocaleString();
         const landCapital = land.capital;
-
         const landLanguages = land.languages
-         ? Object.values(land.languages).join(", ")
-         : "Niet beschikbaar";
-
+            ? Object.values(land.languages).join(", ")
+            : "Niet beschikbaar";
         const landCurrency = land.currencies
-         ? Object.values(land.currencies)
-             .map(curr => curr.name)
-             .join(", ")
-         : "Niet beschikbaar";
-
+            ? Object.values(land.currencies)
+                .map(curr => curr.name)
+                .join(", ")
+            : "Niet beschikbaar";
         const landLatitude = land.capitalInfo.latlng[0]
         const landLongitude = land.capitalInfo.latlng[1]
-
         // create card
         const card =
             `<div class="card col-md-4 shadow-sm">
-                <img src="${landFlag}" class="card-img-top" alt="Vlag van ${landName}">
+                <img src="${landFlag}" id="vlagimg" class="card-img-top" alt="Vlag van ${landName}">
                 <div class="card-body flex-grow d-flex flex-column">
                     <h5 class="card-title">${landName}</h5>
                     <p class="card-text">
@@ -92,7 +85,6 @@ function renderLandenCards(landenList) {
         container.insertAdjacentHTML("beforeend", card);
     })
 }
-
 function openModal(name, flag, capital, region, population, languages, currency, latitude, longitude) {
     const modalContent =
         `<div class="modal-header">
@@ -107,38 +99,33 @@ function openModal(name, flag, capital, region, population, languages, currency,
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <p><strong>Hoofdstad:</strong>${capital}</p>
-                    <p><strong>Regio:</strong>${region}</p>
-                    <p><strong>Populatie:</strong>${population}</p>
+                    <p><strong>Hoofdstad:</strong> ${capital}</p>
+                    <p><strong>Regio:</strong> ${region}</p>
+                    <p><strong>Populatie:</strong> ${population}</p>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Talen:</strong>${languages}</p>
-                    <p><strong>Valuta:</strong>${currency}</p>
+                    <p><strong>Talen:</strong> ${languages}</p>
+                    <p><strong>Valuta:</strong> ${currency}</p>
                 </div>
             </div>
             <div id="map" class="mt-4" style="height: 300px;"></div>
         </div>`;
-
     const modalElement = document.querySelector(".modal-content");
     modalElement.innerHTML = modalContent;
-
     // Toon de modal
     const modal = new bootstrap.Modal(document.getElementById("countryModal"));
     modal.show();
-
     /// Initialiseer de kaart na rendering
     setTimeout(() => {
         const map = L.map('map').setView([latitude, longitude], 6);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
-
         // Voeg een marker toe
         L.marker([latitude, longitude]).addTo(map)
             .bindPopup(`<strong>${name}</strong><br>Hoofdstad: ${capital}`)
             .openPopup();
     }, 300); // Wacht totdat de modal volledig is gerenderd
 }
-
 // verzamel all dat
 zoekLand();

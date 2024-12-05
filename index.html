@@ -14,48 +14,29 @@
 <div class="container py-4" id="container">
     <h1 class="text-center mb-4 text-primary fw-bold">Landen Applicatie</h1>
     <!-- Zoek- en filtersectie -->
-    <div class="search-container">
-        <!-- Zoekveld en knop -->
-        <div class="d-flex justify-content-center align-items-center gap-2">
-            <input id="zoekveld" type="text" class="form-control" placeholder="Zoek een land op naam"
-                   oninput="ZoekOnInput()">
-            <button class="btn btn-primary px-4"
-                    onclick="zoekLand()">
-                Zoek
-            </button>
-        </div>
-        <!-- Regiofilter -->
-        <div class="d-flex justify-content-center pt-3">
-            <select id="regionFilter" class="form-select"
-                    onchange="zoekLand()">
-                <option value="" selected>Filter op regio</option>
-                <option value="Africa">Africa</option>
-                <option value="Americas">Americas</option>
-                <option value="Asia">Asia</option>
-                <option value="Europe">Europe</option>
-                <option value="Oceania">Oceania</option>
-            </select>
-        </div>
+    <div class="row d-flex justify-content-center align-items-center gap-2">
+        <select id="regionFilter" class="form-select w-50"
+                onchange="zoekLand()">
+            <option value="" selected>Filter op regio</option>
+            <option value="Africa">Africa</option>
+            <option value="Americas">Americas</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Oceania">Oceania</option>
+        </select>
+        <input id="zoekveld" type="text" class="form-control w-auto custom-width-search" placeholder="Zoek een land op naam"
+               oninput="ZoekOnInput()">
+        <button class="btn btn-primary px-4 w-auto"
+                onclick="zoekLand()">
+            Zoek
+        </button>
     </div>
-
     <!-- Landenlijst -->
     <div id="landenlijst" class="row g-4 mt-4">
         <div class="col-md-4">
-            <div class="card h-100 shadow-sm">
-                <img src="https://flagcdn.com/w320/be.png" class="card-img-top" alt="Vlag van België">
-                <div class="card-body">
-                    <h5 class="card-title">België</h5>
-                    <p class="card-text">
-                        <strong>Regio:</strong> Europe<br>
-                        <strong>Populatie:</strong> 11,492,641
-                    </p>
-                    <button class="btn btn-primary w-100">Details bekijken</button>
-                </div>
-            </div>
         </div>
     </div>
 </div>
-
 <!-- Modal voor landdetails -->
 <div class="modal fade" id="countryModal" tabindex="-1" aria-labelledby="countryModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -87,7 +68,6 @@
         </div>
     </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
