@@ -69,17 +69,21 @@ function renderLandenCards(landenList) {
         const landLongitude = land.capitalInfo.latlng[1]
         // create card
         const card =
-            `<div class="card col-md-4 shadow-sm">
-                <img src="${landFlag}" id="vlagimg" class="card-img-top" alt="Vlag van ${landName}">
-                <div class="card-body flex-grow d-flex flex-column">
-                    <h5 class="card-title">${landName}</h5>
-                    <p class="card-text">
-                        <strong>Regio:</strong> ${landRegion}<br>
-                        <strong>Populatie:</strong> ${landPopulation}
-                    </p>
-                    <button class="btn btn-primary w-100 mt-auto" onclick="openModal('${landName}', '${landFlag}', '${landCapital}', '${landRegion}', '${landPopulation}', '${landLanguages}', '${landCurrency}', '${landLatitude}', '${landLongitude}')">
-                        Details bekijken 
-                    </button>
+
+            `<div class="col-lg-4 col-md-6 col-sm-12 d-flex">
+                <div class="card shadow-sm w-100">
+                    <img src="${landFlag}" id="vlagimg" class="card-img-top" alt="Vlag van ${landName}">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">${landName}</h5>
+                        <p class="card-text">
+                            <strong>Regio:</strong> ${landRegion}<br>
+                            <strong>Populatie:</strong> ${landPopulation}
+                        </p>
+                        <button class="btn btn-primary w-100 mt-auto" 
+                                onclick="openModal('${landName}', '${landFlag}', '${landCapital}', '${landRegion}', '${landPopulation}', '${landLanguages}', '${landCurrency}', '${landLatitude}', '${landLongitude}')">
+                            Details bekijken
+                        </button>
+                    </div>
                 </div>
             </div>`;
         container.insertAdjacentHTML("beforeend", card);

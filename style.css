@@ -47,7 +47,24 @@
 #vlagimg {
     width: 300px;
     height: 180px;
+    max-width: 100%;
+
 }
+
+@media (max-width: 1024px) {
+    #vlagimg {
+        width: 90%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    #vlagimg {
+        width: 100%;
+    }
+}
+
+
 .card-img-top {
     margin-left: auto;
     margin-right: auto;
@@ -63,3 +80,4 @@
     flex-grow: 1; /* Laat de zoekbalk de rest van de ruimte innemen */
     max-width: 700px; /* Optionele limiet op de breedte */
 }
+
